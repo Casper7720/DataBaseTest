@@ -42,7 +42,6 @@ public class Provider {
 
     }
 
-
     //Добавления товара в ассортимент
     public void setAssortment(ArrayList<AssortmentProduct> assortment) {
         this.assortment = assortment;
