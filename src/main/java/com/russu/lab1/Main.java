@@ -1,6 +1,7 @@
 package com.russu.lab1;
 
 
+import com.russu.lab1.client.Client;
 import com.russu.lab1.employee.DeputyDirector;
 import com.russu.lab1.employee.Director;
 import com.russu.lab1.employee.Seller;
@@ -23,6 +24,9 @@ public class Main implements Runnable {
 
         //поставщик
         Provider provider1 = new Provider("Lol");
+
+        //Клиент
+        Client client1 = new Client("TimCock");
 
 
         //работники магазина1
@@ -52,5 +56,10 @@ public class Main implements Runnable {
         store1.setProduct(cheese, 3);
         store1.setProduct(milk, 15);
         store1.getAllAssortmentProducts();
+
+        //Прайс лист клиента
+        client1.setProductInPriceList(cheese, 3);
+        client1.setProductInPriceList(milk, 1);
+        client1.getAllPriceList();
     }
 }

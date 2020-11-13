@@ -72,6 +72,7 @@ public class Store {
 
     //Вернуть список продуктов
     public void getAllAssortmentProducts() {
+        System.out.println(String.format("Список продуктов в наличии магазина Шестерочка:"));
         for(int i=0; i < assortmentProducts.size();i++){
             System.out.println(String.format("%s - в количестве %s штук, цена за штуку : %s",
                     assortmentProducts.get(i).getProduct().getName(),
@@ -79,6 +80,7 @@ public class Store {
                     assortmentProducts.get(i).getProduct().getValue()*1.1)
             );
         }
+        System.out.println();
     }
     public ArrayList<AssortmentProduct> getAssortmentProducts() {
         return assortmentProducts;

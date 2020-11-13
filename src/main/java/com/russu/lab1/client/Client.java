@@ -17,6 +17,26 @@ public class Client {
         priceList = new ArrayList<>();
     }
 
+    public String getName() {
+        return name;
+    }
+
+    //Возврат прайс листа клиента(списком и выводом в консоль)
+    public ArrayList<AssortmentProduct> getPriceList() {
+        return priceList;
+    }
+    public void getAllPriceList(){
+        System.out.println(String.format("%s необходимо купить: ", this.name));
+        for(int i=0; i < priceList.size(); i++){
+            System.out.println(String.format("%s - %s единиц",
+                    priceList.get(i).getProduct().getName(),
+                    priceList.get(i).getCount())
+            );
+        }
+        System.out.println();
+    }
+
+
     // Добавление продуктов в список покупок
     public void setProductInPriceList(Product product, int count){
         AssortmentProduct assortmentProduct = new AssortmentProduct(product, count);

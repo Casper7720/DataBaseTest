@@ -2,6 +2,7 @@ package com.russu.lab1.provider;
 
 import com.russu.lab1.product.AssortmentProduct;
 import com.russu.lab1.product.Product;
+import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,7 @@ public class Provider {
         return assortment;
     }
     public void getAllAssortment(){
+        System.out.println(String.format("Продукты предосавленные поставщиком - %s", this.name));
         for (int i =0; i< assortment.size(); ++i){
             System.out.println(String.format(
                     "%s - закупочная цена %s",
@@ -36,6 +38,7 @@ public class Provider {
                     assortment.get(i).getProduct().getValue()*0.9)
             );
         }
+        System.out.println();
 
     }
 
