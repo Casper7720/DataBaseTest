@@ -58,7 +58,7 @@ public class Main implements Runnable {
         store1.getAllAssortmentProducts();
 
         //Прайс лист клиента
-        client1.setProductInPriceList(cheese, 3);
+        client1.setProductInPriceList(cheese, 4);
         client1.setProductInPriceList(milk, 1);
         client1.getAllPriceList();
 
@@ -69,6 +69,7 @@ public class Main implements Runnable {
         client1.getAllPriceList();
         client1.makeDream();
         store1.getAllAssortmentProducts();
+        client1.getDream();
         client1.getAllPriceList();
     }
 }

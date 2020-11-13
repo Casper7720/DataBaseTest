@@ -21,11 +21,12 @@ public class inAStroreState extends State{
     //Закупка в магазине
     @Override
     public void makeDream() {
-        //Реализовать закупку продуктов в магазине
 
+        Iterator<AssortmentProduct> assortmentProductIterator =
+                client.getPriceList().iterator();
 
-        Iterator<AssortmentProduct> assortmentProductIterator = client.getPriceList().iterator();
-        Iterator<AssortmentProduct> assortmentProductIteratorStore = client.getStoreDetected().getAssortmentProducts().iterator();
+        Iterator<AssortmentProduct> assortmentProductIteratorStore =
+                client.getStoreDetected().getAssortmentProducts().iterator();
 
         while(assortmentProductIterator.hasNext()){
 
@@ -79,6 +80,13 @@ public class inAStroreState extends State{
 
                 }
             }
+        }
+
+        if(client.getPriceList().size() == 0){
+            client.setStateClient(new chillState(this.client));
+        }
+        else{
+            client.setStateClient(new searchProductsState(this.client));
         }
 
     }
