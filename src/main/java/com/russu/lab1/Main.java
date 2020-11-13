@@ -61,5 +61,8 @@ public class Main implements Runnable {
         client1.setProductInPriceList(cheese, 3);
         client1.setProductInPriceList(milk, 1);
         client1.getAllPriceList();
+
+        //Состояние клиента
+        client1.getDream();
     }
 }

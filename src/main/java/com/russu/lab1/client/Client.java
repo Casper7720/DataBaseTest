@@ -2,6 +2,7 @@ package com.russu.lab1.client;
 
 import com.russu.lab1.client.state.State;
 import com.russu.lab1.client.state.chillState;
+import com.russu.lab1.client.state.searchProductsState;
 import com.russu.lab1.product.AssortmentProduct;
 import com.russu.lab1.product.Product;
 import com.russu.lab1.store.Store;
@@ -80,6 +81,7 @@ public class Client {
         AssortmentProduct assortmentProduct = new AssortmentProduct(product, count);
         if (priceList.size() == 0){
             priceList.add(assortmentProduct);
+            setStateClient(new searchProductsState(this));
         }
         else {
             for (int i = 0; i < priceList.size(); i++) {
