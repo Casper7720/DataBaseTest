@@ -63,6 +63,12 @@ public class Main implements Runnable {
         client1.getAllPriceList();
 
         //Состояние клиента
+
+        client1.makeDream(store1);
         client1.getDream();
+        client1.getAllPriceList();
+        client1.makeDream();
+        store1.getAllAssortmentProducts();
+        client1.getAllPriceList();
     }
 }

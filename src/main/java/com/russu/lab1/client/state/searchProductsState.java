@@ -22,7 +22,7 @@ public class searchProductsState extends State {
     //Перемещение в магазин
     @Override
     public void makeDream(Store store) {
-        client.setStoreDetected(store);
         client.setStateClient(new inAStroreState(this.client));
+        client.setStoreDetected(store);
     }
 }
