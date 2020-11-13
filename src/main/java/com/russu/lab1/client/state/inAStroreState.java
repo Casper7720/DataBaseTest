@@ -84,9 +84,11 @@ public class inAStroreState extends State{
 
         if(client.getPriceList().size() == 0){
             client.setStateClient(new chillState(this.client));
+            client.setStoreDetected(null);
         }
         else{
             client.setStateClient(new searchProductsState(this.client));
+            client.setStoreDetected(null);
         }
 
     }
