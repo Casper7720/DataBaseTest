@@ -142,10 +142,33 @@ public class Store {
     }
 
     //Закупка продуктов у поставщика
-//    public void storeShopping(ArrayList<AssortmentProduct> assortmentProducts, ){
-//
-//
-//
-//    }
+    public void storeShopping(AssortmentProduct... assortmentProducts){
+
+        int count = 0;
+
+        for (int provider = 0; provider < providers.size(); provider++){
+            for (int storePosition = 0; storePosition < assortmentProducts.length; storePosition++){
+                for (int providerPosition = 0;
+                     providerPosition < providers.get(provider).getAssortment().size();
+                     providerPosition++)
+                {
+                    if( providers.get(provider).getAssortment().get(providerPosition).getProduct().getName() ==
+                            assortmentProducts[storePosition].getProduct().getName())
+                    {
+                        this.setProduct(assortmentProducts[storePosition].getProduct(),
+                                assortmentProducts[storePosition].getCount()
+                        );
+
+                        count = count + 1;
+                        break;
+                    }
+                }
+
+            }
+            if(count == assortmentProducts.length){
+                break;
+            }
+        }
+    }
 
 }

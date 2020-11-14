@@ -5,6 +5,7 @@ import com.russu.lab1.client.Client;
 import com.russu.lab1.employee.DeputyDirector;
 import com.russu.lab1.employee.Director;
 import com.russu.lab1.employee.Seller;
+import com.russu.lab1.product.AssortmentProduct;
 import com.russu.lab1.product.Product;
 import com.russu.lab1.provider.Provider;
 import com.russu.lab1.store.Store;
@@ -59,6 +60,7 @@ public class Main implements Runnable {
         // продукты магазина
         store1.setProduct(cheese, 3);
         store1.setProduct(milk, 15);
+        store1.storeShopping(new AssortmentProduct(cheese, 45), new AssortmentProduct(milk, 122));
         store1.getAllAssortmentProducts();
 
         //Прайс лист клиента
