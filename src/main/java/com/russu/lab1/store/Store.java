@@ -5,6 +5,7 @@ import com.russu.lab1.employee.Director;
 import com.russu.lab1.employee.Seller;
 import com.russu.lab1.product.AssortmentProduct;
 import com.russu.lab1.product.Product;
+import com.russu.lab1.provider.Provider;
 
 import java.util.ArrayList;
 
@@ -15,10 +16,12 @@ public class Store {
     private Director director;
     private DeputyDirector deputyDirector;
     private ArrayList<Seller> sellers;
+    private ArrayList<Provider> providers;
 
     public Store(){
         assortmentProducts = new ArrayList<>();
         sellers = new ArrayList<>();
+        providers = new ArrayList<>();
     }
 
     public Director getDirector() {
@@ -39,6 +42,36 @@ public class Store {
 
     public void setSellers(Seller seller) {
         this.sellers.add(seller);
+    }
+
+    public ArrayList<Provider> getProviders() {
+        return providers;
+    }
+    public void getAllProviders(){
+        System.out.println("Поставщики магазина:");
+        for(int i=0; i < providers.size(); i++){
+            System.out.println(providers.get(i).getName());
+        }
+        System.out.println();
+    }
+
+    public void setProviders(ArrayList<Provider> providers) {
+        this.providers = providers;
+    }
+    public void setProviders(Provider... provider){
+        if(providers.size() == 0){
+            providers.add(provider[0]);
+        }
+        for(int i = 0; i < provider.length; i++){
+            for (int j = 0; j < providers.size(); j++){
+                if(providers.get(j).getName() == provider[i].getName()){
+                    break;
+                }
+                if(j+1 == providers.size()){
+                    providers.add(provider[i]);
+                }
+            }
+        }
     }
 
     // Вывод продавцов
@@ -107,5 +140,12 @@ public class Store {
         }
 
     }
+
+    //Закупка продуктов у поставщика
+//    public void storeShopping(ArrayList<AssortmentProduct> assortmentProducts, ){
+//
+//
+//
+//    }
 
 }

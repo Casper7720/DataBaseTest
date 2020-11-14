@@ -42,6 +42,10 @@ public class Main implements Runnable {
         store1.setSellers(seller2);
         store1.getAllEmployees();
 
+        //Поставщики магазина
+        store1.setProviders(provider1, provider1, provider1);
+        store1.getAllProviders();
+
 
         // продукты
         Product cheese = new Product("Cheese", 1);
