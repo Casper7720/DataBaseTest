@@ -55,6 +55,7 @@ public class Store {
         System.out.println();
     }
 
+    //добавление поставщика в список
     public void setProviders(ArrayList<Provider> providers) {
         this.providers = providers;
     }
