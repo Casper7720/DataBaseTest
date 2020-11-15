@@ -4,6 +4,11 @@ import com.russu.lab1.employee.Schedule.Schedule;
 import com.russu.lab1.product.AssortmentProduct;
 import com.russu.lab1.store.Store;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Director extends Employee{
 
     private final String position = "Director";
@@ -46,40 +51,40 @@ public class Director extends Employee{
                     if( store.getProviders().get(provider).getAssortment().get(providerPosition).getProduct().getName() ==
                             assortmentProducts[storePosition].getProduct().getName())
                     {
-                        if (store.getActiveMoney()/
+
+                        //Количество продукта, которые магазин может приобрести
+                        int counts = (int) (store.getActiveMoney()/
                                 store.getProviders().
                                         get(provider).
                                         getAssortment().
                                         get(providerPosition).
                                         getProduct().
-                                        getValue() >= assortmentProducts[storePosition].getCount()
-                        ){
-                            store.setProduct(assortmentProducts[storePosition].getProduct(),
-                                    assortmentProducts[storePosition].getCount()
-                            );
+                                        getValue());
+
+                        if (counts >= assortmentProducts[storePosition].getCount()){
+                            store.setProduct(assortmentProducts[storePosition].getProduct(),counts);
+
                             store.setActiveMoney(store.getActiveMoney()-store.getProviders().
                                     get(provider).
                                     getAssortment().
                                     get(providerPosition).
                                     getProduct().
-                                    getValue()*assortmentProducts[storePosition].getCount()
+                                    getValue()*counts
                             );
+                            assortmentProducts[storePosition].setCount(0);
                         }
-                        else if (store.getActiveMoney()/
-                                store.getProviders().
-                                        get(provider).
-                                        getAssortment().
-                                        get(providerPosition).
-                                        getProduct().
-                                        getValue() < assortmentProducts[storePosition].getCount()
-                        ){
-                            store.setProduct(assortmentProducts[storePosition].getProduct(),
-                                    (int) (store.getActiveMoney() / store.getProviders().
-                                            get(provider).
-                                            getAssortment().
-                                            get(providerPosition).
-                                            getProduct().
-                                            getValue())
+                        else if (counts < assortmentProducts[storePosition].getCount()){
+                            store.setProduct(assortmentProducts[storePosition].getProduct(), counts);
+
+                            store.setActiveMoney(store.getActiveMoney() - store.getProviders().
+                                    get(provider).
+                                    getAssortment().
+                                    get(providerPosition).
+                                    getProduct().
+                                    getValue() * counts
+                            );
+                            assortmentProducts[storePosition].setCount(
+                                    assortmentProducts[storePosition].getCount()-counts
                             );
                         }
 
@@ -92,7 +97,10 @@ public class Director extends Employee{
             if(count == assortmentProducts.length){
                 break;
             }
+
         }
+
+        store.setNecessaryProducts(new ArrayList<AssortmentProduct>(Arrays.asList(assortmentProducts)));
     }
 
 }

@@ -8,6 +8,8 @@ import com.russu.lab1.product.Product;
 import com.russu.lab1.provider.Provider;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class Store {
 
@@ -18,11 +20,13 @@ public class Store {
     private ArrayList<Seller> sellers;
     private ArrayList<Provider> providers;
     private float activeMoney;
+    private List<AssortmentProduct> necessaryProducts;
 
     public Store(){
         assortmentProducts = new ArrayList<>();
         sellers = new ArrayList<>();
         providers = new ArrayList<>();
+        necessaryProducts = new ArrayList<>();
     }
 
     public void setActiveMoney(float activeMoney) {
@@ -51,6 +55,29 @@ public class Store {
 
     public void setSellers(Seller seller) {
         this.sellers.add(seller);
+    }
+
+    //Добавление списка необходимых продуктов
+    public void setNecessaryProducts(List<AssortmentProduct> necessaryProducts) {
+        this.necessaryProducts = necessaryProducts;
+
+        Iterator<AssortmentProduct> necessaryIterator = necessaryProducts.iterator();
+
+        while( necessaryIterator.hasNext()){
+            AssortmentProduct assortmentProduct = necessaryIterator.next();
+
+            if(assortmentProduct.getCount() == 0){
+                necessaryIterator.remove();
+            }
+        }
+    }
+
+    public void setNecessaryProducts(AssortmentProduct assortmentProduct){
+        necessaryProducts.add(assortmentProduct);
+    }
+
+    public List<AssortmentProduct> getNecessaryProducts() {
+        return necessaryProducts;
     }
 
     public ArrayList<Provider> getProviders() {
