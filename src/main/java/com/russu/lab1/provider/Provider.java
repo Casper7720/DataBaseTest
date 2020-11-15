@@ -35,7 +35,7 @@ public class Provider {
             System.out.println(String.format(
                     "%s - закупочная цена %s",
                     assortment.get(i).getProduct().getName(),
-                    assortment.get(i).getProduct().getValue()*0.9)
+                    assortment.get(i).getProduct().getValue())
             );
         }
         System.out.println();

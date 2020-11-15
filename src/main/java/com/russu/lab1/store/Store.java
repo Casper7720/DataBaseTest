@@ -111,7 +111,7 @@ public class Store {
             System.out.println(String.format("%s - в количестве %s штук, цена за штуку : %s",
                     assortmentProducts.get(i).getProduct().getName(),
                     assortmentProducts.get(i).getCount(),
-                    assortmentProducts.get(i).getProduct().getValue()*1.1)
+                    assortmentProducts.get(i).getProduct().getValue())
             );
         }
         System.out.println();
@@ -122,7 +122,9 @@ public class Store {
 
     //Добавить новый продукт в список или изменить количество продукта
     public void setProduct(Product product, int count){
-        AssortmentProduct assortmentProduct = new AssortmentProduct(product, count);
+
+        Product local = new Product(product.getName(), product.getValue()*1.2f);
+        AssortmentProduct assortmentProduct = new AssortmentProduct(local, count);
         if (assortmentProducts.size()==0){
             assortmentProducts.add(assortmentProduct);
         }

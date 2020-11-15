@@ -19,6 +19,10 @@ public class Product {
         return value;
     }
 
+    public void setValue(float value) {
+        this.value = value;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
