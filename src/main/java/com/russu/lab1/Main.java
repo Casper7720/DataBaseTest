@@ -22,6 +22,7 @@ public class Main implements Runnable {
     public void run() {
         //магазин
         Store store1 = new Store();
+        store1.setActiveMoney(10_000);
 
         //поставщик
         Provider provider1 = new Provider("Lol");
@@ -31,10 +32,10 @@ public class Main implements Runnable {
 
 
         //работники магазина1
-        Director director = new Director("Mike");
-        DeputyDirector deputyDirector = new DeputyDirector("Joh");
-        Seller seller1 = new Seller("Wood");
-        Seller seller2 = new Seller("Jack");
+        Director director = new Director("Mike", store1);
+        DeputyDirector deputyDirector = new DeputyDirector("Joh", store1);
+        Seller seller1 = new Seller("Wood", store1);
+        Seller seller2 = new Seller("Jack", store1);
 
         //сотрудники магазина
         store1.setDirector(director);
@@ -60,7 +61,7 @@ public class Main implements Runnable {
         // продукты магазина
         //store1.setProduct(cheese, 3);
         //store1.setProduct(milk, 15);
-        store1.storeShopping(new AssortmentProduct(cheese, 45), new AssortmentProduct(milk, 122));
+        director.storeShopping(new AssortmentProduct(cheese, 45), new AssortmentProduct(milk, 122));
         store1.getAllAssortmentProducts();
 
         //Прайс лист клиента

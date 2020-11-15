@@ -1,6 +1,7 @@
 package com.russu.lab1.employee;
 
 import com.russu.lab1.employee.Schedule.Schedule;
+import com.russu.lab1.store.Store;
 
 public class Seller  extends Employee {
 
@@ -8,8 +9,8 @@ public class Seller  extends Employee {
     private int price = 25_000;
     private Schedule scheduleSeller;
 
-    public Seller(String name) {
-        super(name);
+    public Seller(String name, Store store) {
+        super(name, store);
         scheduleSeller = new Schedule(position);
     }
 

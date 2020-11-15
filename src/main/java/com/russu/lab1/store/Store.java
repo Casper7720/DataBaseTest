@@ -17,11 +17,20 @@ public class Store {
     private DeputyDirector deputyDirector;
     private ArrayList<Seller> sellers;
     private ArrayList<Provider> providers;
+    private int activeMoney;
 
     public Store(){
         assortmentProducts = new ArrayList<>();
         sellers = new ArrayList<>();
         providers = new ArrayList<>();
+    }
+
+    public void setActiveMoney(int activeMoney) {
+        this.activeMoney = activeMoney;
+    }
+
+    public int getActiveMoney() {
+        return activeMoney;
     }
 
     public Director getDirector() {
@@ -144,34 +153,5 @@ public class Store {
 
     }
 
-    //Закупка продуктов у поставщика
-    public void storeShopping(AssortmentProduct... assortmentProducts){
-
-        int count = 0;
-
-        for (int provider = 0; provider < providers.size(); provider++){
-            for (int storePosition = 0; storePosition < assortmentProducts.length; storePosition++){
-                for (int providerPosition = 0;
-                     providerPosition < providers.get(provider).getAssortment().size();
-                     providerPosition++)
-                {
-                    if( providers.get(provider).getAssortment().get(providerPosition).getProduct().getName() ==
-                            assortmentProducts[storePosition].getProduct().getName())
-                    {
-                        this.setProduct(assortmentProducts[storePosition].getProduct(),
-                                assortmentProducts[storePosition].getCount()
-                        );
-
-                        count = count + 1;
-                        break;
-                    }
-                }
-
-            }
-            if(count == assortmentProducts.length){
-                break;
-            }
-        }
-    }
 
 }
