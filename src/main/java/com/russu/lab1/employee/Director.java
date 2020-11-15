@@ -46,9 +46,42 @@ public class Director extends Employee{
                     if( store.getProviders().get(provider).getAssortment().get(providerPosition).getProduct().getName() ==
                             assortmentProducts[storePosition].getProduct().getName())
                     {
-                        store.setProduct(assortmentProducts[storePosition].getProduct(),
-                                assortmentProducts[storePosition].getCount()
-                        );
+                        if (store.getActiveMoney()/
+                                store.getProviders().
+                                        get(provider).
+                                        getAssortment().
+                                        get(providerPosition).
+                                        getProduct().
+                                        getValue() >= assortmentProducts[storePosition].getCount()
+                        ){
+                            store.setProduct(assortmentProducts[storePosition].getProduct(),
+                                    assortmentProducts[storePosition].getCount()
+                            );
+                            store.setActiveMoney(store.getActiveMoney()-store.getProviders().
+                                    get(provider).
+                                    getAssortment().
+                                    get(providerPosition).
+                                    getProduct().
+                                    getValue()*assortmentProducts[storePosition].getCount()
+                            );
+                        }
+                        else if (store.getActiveMoney()/
+                                store.getProviders().
+                                        get(provider).
+                                        getAssortment().
+                                        get(providerPosition).
+                                        getProduct().
+                                        getValue() < assortmentProducts[storePosition].getCount()
+                        ){
+                            store.setProduct(assortmentProducts[storePosition].getProduct(),
+                                    (int) (store.getActiveMoney() / store.getProviders().
+                                            get(provider).
+                                            getAssortment().
+                                            get(providerPosition).
+                                            getProduct().
+                                            getValue())
+                            );
+                        }
 
                         count = count + 1;
                         break;

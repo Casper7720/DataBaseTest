@@ -17,7 +17,7 @@ public class Store {
     private DeputyDirector deputyDirector;
     private ArrayList<Seller> sellers;
     private ArrayList<Provider> providers;
-    private int activeMoney;
+    private float activeMoney;
 
     public Store(){
         assortmentProducts = new ArrayList<>();
@@ -25,11 +25,11 @@ public class Store {
         providers = new ArrayList<>();
     }
 
-    public void setActiveMoney(int activeMoney) {
+    public void setActiveMoney(float activeMoney) {
         this.activeMoney = activeMoney;
     }
 
-    public int getActiveMoney() {
+    public float getActiveMoney() {
         return activeMoney;
     }
 

@@ -59,10 +59,9 @@ public class Main implements Runnable {
         provider1.getAllAssortment();
 
         // продукты магазина
-        //store1.setProduct(cheese, 3);
-        //store1.setProduct(milk, 15);
         director.storeShopping(new AssortmentProduct(cheese, 45), new AssortmentProduct(milk, 122));
         store1.getAllAssortmentProducts();
+        System.out.println(String.format("Активы магазина : %s", store1.getActiveMoney()));
 
         //Прайс лист клиента
         client1.setProductInPriceList(cheese, 4);
