@@ -38,18 +38,22 @@ public class Director extends Employee{
     }
 
     //Закупка продуктов у поставщика
-    public void storeShopping(AssortmentProduct... assortmentProducts){
+    public void storeShopping(){
 
         int count = 0;
 
         for (int provider = 0; provider < store.getProviders().size(); provider++){
-            for (int storePosition = 0; storePosition < assortmentProducts.length; storePosition++){
+            for (int storePosition = 0; storePosition < store.getNecessaryProducts().size(); storePosition++){
                 for (int providerPosition = 0;
                      providerPosition < store.getProviders().get(provider).getAssortment().size();
                      providerPosition++)
                 {
-                    if( store.getProviders().get(provider).getAssortment().get(providerPosition).getProduct().getName() ==
-                            assortmentProducts[storePosition].getProduct().getName())
+                    if( store.getProviders().
+                            get(provider).
+                            getAssortment().
+                            get(providerPosition).
+                            getProduct().
+                            getName() == store.getNecessaryProducts().get(storePosition).getProduct().getName())
                     {
 
                         //Количество продукта, которые магазин может приобрести
@@ -59,23 +63,32 @@ public class Director extends Employee{
                                         getAssortment().
                                         get(providerPosition).
                                         getProduct().
-                                        getValue());
+                                        getValue()
+                        );
 
-                        if (counts >= assortmentProducts[storePosition].getCount()){
-                            store.setProduct(assortmentProducts[storePosition].getProduct(),counts);
+                        if (counts >= store.getNecessaryProducts().get(storePosition).getCount()){
 
+                            //Добавление продуктов в магазин
+                            store.setProduct(store.getNecessaryProducts().get(storePosition).getProduct(),
+                                    store.getNecessaryProducts().get(storePosition).getCount()
+                            );
+                            //Списание денег из актива магазина
                             store.setActiveMoney(store.getActiveMoney()-store.getProviders().
                                     get(provider).
                                     getAssortment().
                                     get(providerPosition).
                                     getProduct().
-                                    getValue()*counts
+                                    getValue()* store.getNecessaryProducts().get(storePosition).getCount()
                             );
-                            assortmentProducts[storePosition].setCount(0);
+                            //Удаление продукта из списка необходимых
+                            store.getNecessaryProducts().remove(storePosition);
+                            storePosition--;
                         }
-                        else if (counts < assortmentProducts[storePosition].getCount()){
-                            store.setProduct(assortmentProducts[storePosition].getProduct(), counts);
+                        else if (counts < store.getNecessaryProducts().get(storePosition).getCount()){
+                            //Добавление продуктов в магазин
+                            store.setProduct(store.getNecessaryProducts().get(storePosition).getProduct(), counts);
 
+                            //Списание денег из активов магазина
                             store.setActiveMoney(store.getActiveMoney() - store.getProviders().
                                     get(provider).
                                     getAssortment().
@@ -83,24 +96,22 @@ public class Director extends Employee{
                                     getProduct().
                                     getValue() * counts
                             );
-                            assortmentProducts[storePosition].setCount(
-                                    assortmentProducts[storePosition].getCount()-counts
+
+                            //Изменение количества необходимого к покупке
+                            store.getNecessaryProducts().get(storePosition).setCount(
+                                    store.getNecessaryProducts().get(storePosition).getCount()-counts
                             );
                         }
-
-                        count = count + 1;
                         break;
                     }
                 }
 
             }
-            if(count == assortmentProducts.length){
+            if(store.getNecessaryProducts().size() == 0){
                 break;
             }
-
         }
 
-        store.setNecessaryProducts(new ArrayList<AssortmentProduct>(Arrays.asList(assortmentProducts)));
     }
 
 }
