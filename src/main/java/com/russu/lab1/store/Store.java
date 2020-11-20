@@ -8,6 +8,7 @@ import com.russu.lab1.product.Product;
 import com.russu.lab1.provider.Provider;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -58,22 +59,25 @@ public class Store {
     }
 
     //Добавление списка необходимых продуктов
-    public void setNecessaryProducts(List<AssortmentProduct> necessaryProducts) {
-        this.necessaryProducts = necessaryProducts;
+    public void setNecessaryProducts(AssortmentProduct... assortments) {
 
-        Iterator<AssortmentProduct> necessaryIterator = necessaryProducts.iterator();
+        int i = 0;
+        if (necessaryProducts.size() == 0){
+            necessaryProducts.add(assortments[0]);
+            i++;
+        }
 
-        while( necessaryIterator.hasNext()){
-            AssortmentProduct assortmentProduct = necessaryIterator.next();
-
-            if(assortmentProduct.getCount() == 0){
-                necessaryIterator.remove();
+        for ( ; i< assortments.length; i++){
+            for(int j = 0; j < necessaryProducts.size(); j++) {
+                if (assortments[i].getProduct().getName() == necessaryProducts.get(j).getProduct().getName()) {
+                    necessaryProducts.get(j).countSummer(assortments[i].getCount());
+                    break;
+                } else if (j + 1 == necessaryProducts.size()) {
+                    necessaryProducts.add(assortments[i]);
+                    break;
+                }
             }
         }
-    }
-
-    public void setNecessaryProducts(AssortmentProduct assortmentProduct){
-        necessaryProducts.add(assortmentProduct);
     }
 
     public List<AssortmentProduct> getNecessaryProducts() {
